@@ -2,7 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import morgan from "morgan";
 import colors from "colors";
+
+//** IMPORT ROUTES */
+import userRoutes from "./routes/userRoutes.js";
 
 //** MIDDLEWARE IMPORT */
 import { handleError, notFound } from "./middlewares/errorHandler.js";
@@ -19,15 +23,21 @@ const app = express();
 
 //** MIDDLEWARE */
 app.use(express.json());
-app.use(cors);
+app.use(cors());
+app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(handleError);
-app.use(notFound);
 
 //** API GET REQUEST */
 app.get("/", (req, res) => {
   res.send("Wenn Mark Recopelacion");
 });
+
+//** ROUTES API */
+app.use("/api/v1", userRoutes);
+
+// ** VALIDATION MIDDLEWARE *
+app.use(handleError);
+app.use(notFound);
 
 //** DATABASE */
 connectDB();

@@ -1,4 +1,5 @@
-import mongoose from "mongoose"; // Erase if already required
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 // Declare the Schema of the Mongo model
 const userSchema = new mongoose.Schema(
@@ -55,6 +56,18 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+//** Password Hashing */
+userSchema.pre("save", async function () {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+//** Login */
+userSchema.methods.isPasswordMatched = async function (enteredPassword) {
+  const isMatch = await bcrypt.compare(enteredPassword, this.password);
+  return isMatch;
+};
 
 //Export the model
 export default mongoose.model("User", userSchema);

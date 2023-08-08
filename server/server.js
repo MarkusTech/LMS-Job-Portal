@@ -39,7 +39,6 @@ app.use("/api/v1", userRoutes);
 // ** VALIDATION MIDDLEWARE *
 app.use(notFound);
 app.use(errorMiddleware);
-// app.use(handleError);
 
 //** DATABASE */
 connectDB();

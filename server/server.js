@@ -4,6 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import colors from "colors";
 
+//** MIDDLEWARE IMPORT */
+import { handleError, notFound } from "./middlewares/errorHandler.js";
+
 //** DATABASE IMPORT */
 import connectDB from "./config/db.js";
 
@@ -18,6 +21,8 @@ const app = express();
 app.use(express.json());
 app.use(cors);
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(handleError);
+app.use(notFound);
 
 //** API GET REQUEST */
 app.get("/", (req, res) => {

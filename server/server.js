@@ -9,7 +9,8 @@ import colors from "colors";
 import userRoutes from "./routes/userRoutes.js";
 
 //** MIDDLEWARE IMPORT */
-import { handleError, notFound } from "./middlewares/errorHandler.js";
+import notFound from "./middlewares/errorHandler.js";
+import errorMiddleware from "./middlewares/errorMiddleware.js";
 
 //** DATABASE IMPORT */
 import connectDB from "./config/db.js";
@@ -25,7 +26,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //** API GET REQUEST */
 app.get("/", (req, res) => {
@@ -36,8 +37,9 @@ app.get("/", (req, res) => {
 app.use("/api/v1", userRoutes);
 
 // ** VALIDATION MIDDLEWARE *
-app.use(handleError);
 app.use(notFound);
+app.use(errorMiddleware);
+// app.use(handleError);
 
 //** DATABASE */
 connectDB();

@@ -70,4 +70,18 @@ const login = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { register, login };
+//** GET ALL USERS */
+const getAllUsers = asyncHandler(async (req, res, next) => {
+  try {
+    const allUser = await userModel.find();
+    res.status(200).json({
+      status: true,
+      message: "All User Fetched Successfully",
+      allUser,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export { register, login, getAllUsers };

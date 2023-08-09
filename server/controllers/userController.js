@@ -138,7 +138,7 @@ const blockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
-    const block = await userModel.findOneAndUpdate(
+    const block = await userModel.findByIdAndUpdate(
       id,
       { isBlocked: true },
       { new: true }
@@ -158,7 +158,7 @@ const unblockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
-    const unblock = await userModel.findOneAndUpdate(
+    const unblock = await userModel.findByIdAndUpdate(
       id,
       { isBlocked: false },
       { new: true }
@@ -173,4 +173,36 @@ const unblockUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { register, login, getAllUser, updateUser, deleteUser, getAuser };
+//** RESET PASSWORD */
+const updatePassword = asyncHandler(async (req, res, next) => {
+  const { _id } = req.user;
+  const { password } = req.body;
+  validateMongoDbId(_id);
+  try {
+    const user = await userModel.findById(_id);
+    if (user && password && (await user.isPasswordMatched(password))) {
+      next("Please Provide a new password instead of old one.");
+    } else {
+      user.password = password;
+      await user.save();
+      res.status(200).json({
+        status: true,
+        message: "Password Updated Successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export {
+  register,
+  login,
+  getAllUser,
+  updateUser,
+  deleteUser,
+  getAuser,
+  blockUser,
+  unblockUser,
+  updatePassword,
+};

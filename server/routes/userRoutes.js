@@ -6,6 +6,9 @@ import {
   getAuser,
   updateUser,
   deleteUser,
+  blockUser,
+  unblockUser,
+  updatePassword,
 } from "../controllers/userController.js";
 import { authMiddleware, restrictTo } from "../middlewares/authMiddleware.js";
 
@@ -22,6 +25,9 @@ router.get("/user/:id", authMiddleware, getAuser);
 
 /* all put routes */
 router.put("/update-profile", authMiddleware, updateUser);
+router.put("/block/:id", authMiddleware, restrictTo("admin"), blockUser);
+router.put("/unblock/:id", authMiddleware, restrictTo("admin"), unblockUser);
+router.put("/update-password", authMiddleware, updatePassword);
 
 /* all delete routes */
 router.delete(

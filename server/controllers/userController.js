@@ -72,13 +72,28 @@ const login = asyncHandler(async (req, res, next) => {
 });
 
 //** GET ALL USERS */
-const getAllUsers = asyncHandler(async (req, res, next) => {
+const getAllUser = asyncHandler(async (req, res) => {
   try {
     const allUser = await userModel.find();
     res.status(200).json({
       status: true,
-      message: "All User Fetched Successfully",
+      message: "All Users Fetched Successfully",
       allUser,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+//** GET A USER */
+const getAuser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getProfile = await userModel.findById(id);
+    res.status(200).json({
+      status: true,
+      message: "User Found",
+      getProfile,
     });
   } catch (error) {
     console.log(error);
@@ -103,17 +118,17 @@ const updateUser = asyncHandler(async (req, res) => {
 
 //** DELETE USER */
 const deleteUser = asyncHandler(async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
-    const deleteUsers = await userModel.findByIdAndDelete(id)
+    const deleteUsers = await userModel.findByIdAndDelete(id);
     res.status(200).json({
-      status:true,
-      message:"User Deleted Successfullly",
-      deleteUsers
-    })
+      status: true,
+      message: "User Deleted Successfullly",
+      deleteUsers,
+    });
   } catch (error) {
     console.log(error);
   }
-})
+});
 
-export { register, login, getAllUsers, updateUser, deleteUser };
+export { register, login, getAllUser, updateUser, deleteUser, getAuser };

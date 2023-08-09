@@ -2,7 +2,8 @@ import express from "express";
 import {
   register,
   login,
-  getAllUsers,
+  getAllUser,
+  getAuser,
   updateUser,
   deleteUser,
 } from "../controllers/userController.js";
@@ -16,7 +17,8 @@ router.post("/register", register);
 router.post("/login", login);
 
 /* all get routes */
-router.get("/all-user", getAllUsers);
+router.get("/all-user", authMiddleware, restrictTo("admin"), getAllUser);
+router.get("/user/:id", authMiddleware, getAuser);
 
 /* all put routes */
 router.put("/update-profile", authMiddleware, updateUser);

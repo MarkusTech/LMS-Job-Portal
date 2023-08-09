@@ -4,6 +4,7 @@ import {
   login,
   getAllUsers,
   updateUser,
+  deleteUser,
 } from "../controllers/userController.js";
 import { authMiddleware, restrictTo } from "../middlewares/authMiddleware.js";
 
@@ -19,5 +20,13 @@ router.get("/all-user", getAllUsers);
 
 /* all put routes */
 router.put("/update-profile", authMiddleware, updateUser);
+
+/* all delete routes */
+router.delete(
+  "/delete-user/:id",
+  authMiddleware,
+  restrictTo("admin"),
+  deleteUser
+);
 
 export default router;

@@ -101,4 +101,19 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { register, login, getAllUsers, updateUser };
+//** DELETE USER */
+const deleteUser = asyncHandler(async (req, res) => {
+  const {id} = req.params;
+  try {
+    const deleteUsers = await userModel.findByIdAndDelete(id)
+    res.status(200).json({
+      status:true,
+      message:"User Deleted Successfullly",
+      deleteUsers
+    })
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+export { register, login, getAllUsers, updateUser, deleteUser };

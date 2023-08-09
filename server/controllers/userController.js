@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 import generateToken from "../utils/jwt.js";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 import crypto from "crypto";
+import sendEmail from "./emailController.js";
 
 //** Create A User */
 const register = asyncHandler(async (req, res, next) => {
@@ -205,6 +206,13 @@ const forgotPasswordToken = asyncHandler(async (req, res) => {
     const token = await user.createPasswordResetToken();
     await user.save();
     const resetlink = `http://localhost:4000/api/user/reset-password/${token}`;
+    const data = {
+      to: email,
+      text: `Hey ${user.firstname + " " + user.lastname} `,
+      subject: "Forgot Password",
+      html: resetlink,
+    };
+    sendEmail(data);
     res.status(200).json(resetlink);
   } catch (error) {
     console.log(error);

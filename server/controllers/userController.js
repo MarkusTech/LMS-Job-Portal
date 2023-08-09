@@ -88,6 +88,7 @@ const getAllUser = asyncHandler(async (req, res) => {
 //** GET A USER */
 const getAuser = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  validateMongoDbId(id);
   try {
     const getProfile = await userModel.findById(id);
     res.status(200).json({
@@ -119,12 +120,53 @@ const updateUser = asyncHandler(async (req, res) => {
 //** DELETE USER */
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  validateMongoDbId(id);
   try {
     const deleteUsers = await userModel.findByIdAndDelete(id);
     res.status(200).json({
       status: true,
       message: "User Deleted Successfullly",
       deleteUsers,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//** Block a user */
+const blockUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+  try {
+    const block = await userModel.findOneAndUpdate(
+      id,
+      { isBlocked: true },
+      { new: true }
+    );
+    res.status(200).json({
+      status: true,
+      message: `User Blocked Successfully`,
+      block,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//** unBlock a user */
+const unblockUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+  try {
+    const unblock = await userModel.findOneAndUpdate(
+      id,
+      { isBlocked: false },
+      { new: true }
+    );
+    res.status(200).json({
+      status: true,
+      message: `User unblocked Successfully`,
+      unblock,
     });
   } catch (error) {
     console.log(error);

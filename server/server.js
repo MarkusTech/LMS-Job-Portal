@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import colors from "colors";
+import session from "express-session";
+import passport from "passport";
 
 //** IMPORT ROUTES */
 import userRoutes from "./routes/userRoutes.js";
@@ -14,6 +16,7 @@ import errorMiddleware from "./middlewares/errorMiddleware.js";
 
 //** DATABASE IMPORT */
 import connectDB from "./config/db.js";
+import MongoStore from "connect-mongo";
 
 //** DOTENV CONFIG */
 dotenv.config();
@@ -23,6 +26,19 @@ const port = process.env.PORT;
 const app = express();
 
 //** MIDDLEWARE */
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: "ThatsMySecret",
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB,
+      ttl: 12 * 60 * 60,
+    }),
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));

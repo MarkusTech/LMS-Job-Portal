@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/jwt.js";
+import validateMongoDbId from "../utils/validateMongoDbId.js";
 
 //** Create A User */
 const register = asyncHandler(async (req, res, next) => {
@@ -84,4 +85,20 @@ const getAllUsers = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { register, login, getAllUsers };
+//** UPDATE USER */
+const updateUser = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+  try {
+    const user = await userModel.findByIdAndUpdate(_id, req.body, {
+      new: true,
+    });
+    res
+      .status(200)
+      .json({ status: true, message: "Profile Updated Successfully!", user });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+export { register, login, getAllUsers, updateUser };

@@ -3,9 +3,9 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
-import colors from "colors";
 import session from "express-session";
 import passport from "passport";
+import colors from "colors";
 
 //** IMPORT ROUTES */
 import userRoutes from "./routes/userRoutes.js";

@@ -14,8 +14,11 @@ const tutorialSchema = new mongoose.Schema(
       index: true,
     },
     tutorialCategory: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "TutorialCategory",
+      type: String,
+      required: true,
+    },
+    tutorialCategorySlug: {
+      type: String,
       required: true,
     },
     topicName: {

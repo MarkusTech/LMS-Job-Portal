@@ -56,8 +56,8 @@ app.get("/", (req, res) => {
 });
 
 //** ROUTES API */
-app.use("/api/v1", userRoutes);
 app.use("/", googleRoutes);
+app.use("/api/v1", userRoutes);
 app.use("/api/v1/tutorial/category", tutorialCategory);
 
 // ** VALIDATION MIDDLEWARE *

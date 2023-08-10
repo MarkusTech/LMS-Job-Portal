@@ -38,4 +38,4 @@ const tutorialSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.Model("Tutorial", tutorialSchema);
+export default mongoose.model("Tutorial", tutorialSchema);

@@ -13,9 +13,19 @@ const createTutorial = asyncHandler(async (req, res) => {
         req.body.tutorialCategory.toLowerCase()
       );
     }
+    const createTutorial = await tutorialModel.create(req.body);
+    res.status(200).json({
+      status: true,
+      message: "Tutorial Created Successfully!",
+      createTutorial,
+    });
   } catch (error) {
     console.log(error);
   }
 });
 
-export { createTutorial };
+const getAllTutorials = asyncHandler(async (req, res) => {
+  res.send("Get All tutorials");
+});
+
+export { createTutorial, getAllTutorials };

@@ -24,4 +24,4 @@ const tutCategorySchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("TutorialCategory", tutCategorySchema)
+export default mongoose.model("TutorialCategory", tutCategorySchema);

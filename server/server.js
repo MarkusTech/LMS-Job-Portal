@@ -9,10 +9,12 @@ import colors from "colors";
 
 //** IMPORT ROUTES */
 import userRoutes from "./routes/userRoutes.js";
+import googleRoutes from "./routes/googleRoutes.js";
 
 //** MIDDLEWARE IMPORT */
 import notFound from "./middlewares/errorHandler.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
+import passportSetup from "./utils/passport.js"
 
 //** DATABASE IMPORT */
 import connectDB from "./config/db.js";
@@ -46,11 +48,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //** API GET REQUEST */
 app.get("/", (req, res) => {
-  res.send("Wenn Mark Recopelacion");
+  res.send(`<a href="http://localhost:5000/google">Login With Google</a>`);
 });
 
 //** ROUTES API */
 app.use("/api/v1", userRoutes);
+app.use("/", googleRoutes);
 
 // ** VALIDATION MIDDLEWARE *
 app.use(notFound);

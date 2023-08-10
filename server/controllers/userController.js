@@ -198,6 +198,7 @@ const updatePassword = asyncHandler(async (req, res, next) => {
 });
 
 //** FORGOT PASSWORD TOKEN */
+//** MUST PROVIDE A VALID NODEMAILER ACCOUNT */
 const forgotPasswordToken = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const user = await userModel.findOne({ email });

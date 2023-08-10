@@ -24,8 +24,43 @@ const createTutorial = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET ALL TUTORIALS */
 const getAllTutorials = asyncHandler(async (req, res) => {
-  res.send("Get All tutorials");
+  try {
+    const result = await tutorialModel.find();
+    res.status(200).json({
+      status: true,
+      message: "Tutorial Fetched Successfully",
+      result,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-export { createTutorial, getAllTutorials };
+//** GET SINGLE TUTORIAL */
+const getATutorial = asyncHandler(async (req, res) => {
+  const { slug, type } = req.params;
+  try {
+    const result = await tutorialModel.findOne({
+      slug: slug,
+      tutorialCategorySlug: type,
+    });
+    const tutorialTopics = await tutorialModel
+      .find({
+        tutorialCategorySlug: type,
+      })
+      .select("topicName title slug tutorialCategorySlug")
+      .sort("createdAt");
+    res.status(200).json({
+      status: true,
+      message: "Data Fetched!",
+      result,
+      tutorialTopics,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export { createTutorial, getAllTutorials, getATutorial };

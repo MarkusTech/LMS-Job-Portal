@@ -10,11 +10,22 @@ router.get(
   "/login/success",
   asyncHandler(async (req, res) => {
     if (req.user) {
-      console.log("success");
-      res.status(200).json({
-        status: true,
-        message: "login success",
-      });
+      const findUser = await userModel.findOne({ email: req.user.email });
+      if (findUser) {
+        res.status(200).json({
+          status: true,
+          message: "Logged In Successfully!",
+          token: generateToken(findUser?._id),
+          role: findUser?.roles,
+          username: findUser?.firstname + " " + findUser?.lastname,
+          user_image: findUser?.user_image,
+          from: "google",
+        });
+      } else {
+        throw new Error("Something went wrong!");
+      }
+    } else {
+      throw new Error("Something Went Wrong!");
     }
   })
 );

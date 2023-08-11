@@ -14,6 +14,7 @@ import tutorialCategory from "./routes/tutorialCategoryRoutes.js";
 import tutorialRoutes from "./routes/tutorialRoutes.js";
 import newsLetterRoutes from "./routes/newsLetterRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
 
 //** MIDDLEWARE IMPORT */
 import notFound from "./middlewares/errorHandler.js";
@@ -65,6 +66,7 @@ app.use("/api/v1/tutorial/category", tutorialCategory);
 app.use("/api/v1/tutorial", tutorialRoutes);
 app.use("/api/v1/newsletter", newsLetterRoutes);
 app.use("/api/v1/review", reviewRoutes);
+app.use("/api/v1/contact", contactRoutes);
 
 // ** VALIDATION MIDDLEWARE *
 app.use(notFound);

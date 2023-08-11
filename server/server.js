@@ -12,6 +12,7 @@ import userRoutes from "./routes/userRoutes.js";
 import googleRoutes from "./routes/googleRoutes.js";
 import tutorialCategory from "./routes/tutorialCategoryRoutes.js";
 import tutorialRoutes from "./routes/tutorialRoutes.js";
+import newsLetterRoutes from "./routes/newsLetterRoutes.js";
 
 //** MIDDLEWARE IMPORT */
 import notFound from "./middlewares/errorHandler.js";
@@ -61,6 +62,7 @@ app.use("/", googleRoutes);
 app.use("/api/v1", userRoutes);
 app.use("/api/v1/tutorial/category", tutorialCategory);
 app.use("/api/v1/tutorial", tutorialRoutes);
+app.use("/api/v1/newsletter", newsLetterRoutes);
 
 // ** VALIDATION MIDDLEWARE *
 app.use(notFound);

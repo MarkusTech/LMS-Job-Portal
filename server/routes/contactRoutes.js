@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import { authMiddleware, restrictTo } from "../middlewares/authMiddleware.js";
 
 import {
   createContact,
@@ -9,10 +10,10 @@ import {
   updateRContactStatus,
 } from "../controllers/contactController.js";
 
-router.post("/", createContact);
-router.get("/", getAllContact);
-router.get("/:id", getAContact);
-router.delete("/:id", deleteContact);
-router.put("/:id", updateRContactStatus);
+router.post("/", authMiddleware, createContact);
+router.get("/", authMiddleware, getAllContact);
+router.get("/:id", authMiddleware, restrictTo("admin"), getAContact);
+router.delete("/:id", authMiddleware, restrictTo("admin"), deleteContact);
+router.put("/:id", authMiddleware, restrictTo("admin"), updateRContactStatus);
 
 export default router;

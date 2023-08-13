@@ -28,6 +28,10 @@ const contactSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      default: "Submitted",
+    },
   },
   { timestamps: true }
 );

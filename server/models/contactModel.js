@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Declare the Schema of the Mongo model
-const contactSchema = new mongoose.Schema(
+let contactSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -16,14 +16,8 @@ const contactSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    subject: {
-      type: String,
-      required: true,
-    },
-    profession: {
-      ype: String,
-      required: true,
-    },
+    subject: { type: String, required: true },
+    profession: { type: String, required: true },
     comment: {
       type: String,
       required: true,
@@ -36,5 +30,4 @@ const contactSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//Export the model
 export default mongoose.model("Contact", contactSchema);

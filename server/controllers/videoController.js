@@ -77,7 +77,6 @@ const updateVideo = asyncHandler(async (req, res) => {
     res.status(200).json({
       status: true,
       message: "Video Updated Successfully",
-      updateVid,
     });
   } catch (error) {
     console.log(error);

@@ -10,7 +10,7 @@ import {
 } from "../controllers/videoController.js";
 
 //** POST METHOD */
-router.post("/", videoController);
+router.post("/", authMiddleware, restrictTo("admin"), videoController);
 
 //** GET METHOD */
 router.get("/:slug", getVideo);
@@ -20,6 +20,6 @@ router.get("/", getAllVideo);
 router.delete("/:id", deleteVideo);
 
 //** PUT METHOD */
-router.put("/id", updateVideo);
+router.put("/:id", authMiddleware, restrictTo("admin"), updateVideo);
 
 export default router;

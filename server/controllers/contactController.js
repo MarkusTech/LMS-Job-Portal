@@ -2,6 +2,7 @@ import contactModel from "../models/contactModel.js";
 import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 
+//** Create Contact */
 const createContact = asyncHandler(async (req, res) => {
   try {
     const contact = await contactModel.create(req.body);
@@ -15,6 +16,7 @@ const createContact = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET ALL CONTACTS */
 const getAllContact = asyncHandler(async (req, res) => {
   try {
     const result = await contactModel.find();
@@ -28,6 +30,7 @@ const getAllContact = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET CONTACT */
 const getAContact = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
@@ -42,6 +45,7 @@ const getAContact = asyncHandler(async (req, res) => {
   }
 });
 
+//** DELETE CONTACT */
 const deleteContact = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
@@ -56,6 +60,7 @@ const deleteContact = asyncHandler(async (req, res) => {
   }
 });
 
+//** UPDATE CONTACT STATUS */
 const updateRContactStatus = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);

@@ -1,5 +1,4 @@
 import contactModel from "../models/contactModel.js";
-import userModel from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 
@@ -45,6 +44,7 @@ const getAContact = asyncHandler(async (req, res) => {
 
 const deleteContact = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  validateMongoDbId(id);
   try {
     const deleterev = await contactModel.findByIdAndDelete(id);
     res.status(200).json({
@@ -58,6 +58,7 @@ const deleteContact = asyncHandler(async (req, res) => {
 
 const updateRContactStatus = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  validateMongoDbId(id);
   try {
     const result = await contactModel.findByIdAndUpdate(
       id,

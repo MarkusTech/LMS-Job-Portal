@@ -14,7 +14,7 @@ router.post("/", authMiddleware, restrictTo("admin"), postDocumentation);
 
 //** GET METHOD */
 router.get("/", getAllDocumentation);
-router.get("/:id", getDocumentation);
+router.get("/:slug", getDocumentation);
 
 //** DELETE METHOD */
 router.delete("/:id", deleteDocumentation);

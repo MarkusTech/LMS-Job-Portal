@@ -9,4 +9,8 @@ Using the lastest packages. and also i will use security package to minimize the
 -> tutorial category controller
 -> user controller
 -> video controller
+-> blog category controller
+-> blog controller
+-> doc category controller
+-> documentation controller
 

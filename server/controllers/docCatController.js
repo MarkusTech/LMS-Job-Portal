@@ -21,7 +21,7 @@ const postDocCategory = asyncHandler(async (req, res) => {
 });
 
 //** GET ALL DOCS CATEGORY */
-const getAllDocCat = asyncHandler(async (req, res) => {
+const getAllDocCatCategory = asyncHandler(async (req, res) => {
   try {
     const result = await docCatModel.find();
     res.status(200).json({
@@ -35,7 +35,7 @@ const getAllDocCat = asyncHandler(async (req, res) => {
 });
 
 //** GET A DOC */
-const getADoc = asyncHandler(async (req, res) => {
+const getADocCategory = asyncHandler(async (req, res) => {
   const { slug } = req.params;
   try {
     const result = await docCatModel.findOne({ slug });
@@ -50,7 +50,7 @@ const getADoc = asyncHandler(async (req, res) => {
 });
 
 //** DELETE DOC */
-const deleteDoc = asyncHandler(async (req, res) => {
+const deleteDocCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
@@ -65,7 +65,7 @@ const deleteDoc = asyncHandler(async (req, res) => {
 });
 
 //** UPDATE DOC */
-const updateDoc = asyncHandler(async (req, res) => {
+const updateDocCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { title, slug } = req.body;
   validateMongoDbId(id);
@@ -86,4 +86,10 @@ const updateDoc = asyncHandler(async (req, res) => {
   }
 });
 
-export { postDocCategory, getADoc, getAllDocCat, deleteDoc, updateDoc };
+export {
+  postDocCategory,
+  getADocCategory,
+  getAllDocCatCategory,
+  deleteDocCategory,
+  updateDocCategory,
+};

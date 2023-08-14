@@ -16,6 +16,7 @@ import newsLetterRoutes from "./routes/newsLetterRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import videoRoutes from "./routes/videoRoutes.js";
+import documentationRoutes from "./routes/documentationRoutes.js";
 
 //** MIDDLEWARE IMPORT */
 import notFound from "./middlewares/errorHandler.js";
@@ -69,6 +70,7 @@ app.use("/api/v1/newsletter", newsLetterRoutes);
 app.use("/api/v1/review", reviewRoutes);
 app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/video", videoRoutes);
+app.use("/api/v1/documentation", documentationRoutes);
 
 // ** VALIDATION MIDDLEWARE *
 app.use(notFound);

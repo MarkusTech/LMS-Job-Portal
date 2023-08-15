@@ -3,6 +3,7 @@ import userModel from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 
+//** CREATE REVIEW */
 const createReview = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   validateMongoDbId(_id);
@@ -23,6 +24,7 @@ const createReview = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET ALL REVIEW */
 const getAllReviews = asyncHandler(async (req, res) => {
   try {
     const result = await reviewModel.find();
@@ -36,6 +38,7 @@ const getAllReviews = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET A REVIEW */
 const getAReview = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
@@ -50,6 +53,7 @@ const getAReview = asyncHandler(async (req, res) => {
   }
 });
 
+//** DELETE REVIEW */
 const deleteReview = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
@@ -63,6 +67,7 @@ const deleteReview = asyncHandler(async (req, res) => {
   }
 });
 
+//** UPDATE REVIEW */
 const updateReviewStatus = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {

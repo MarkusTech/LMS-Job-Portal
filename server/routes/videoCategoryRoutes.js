@@ -9,8 +9,9 @@ import {
   updateVideoCategory,
 } from "../controllers/videoCategoryController.js";
 
+router.get("/all", authMiddleware, restrictTo("admin"), getAllVideoCategory);
+
 router.post("/", authMiddleware, restrictTo("admin"), postVideoCategory);
-router.get("/", getAllVideoCategory);
 router.get("/:slug", authMiddleware, restrictTo("admin"), getVideoCategory);
 router.delete("/:id", authMiddleware, restrictTo("admin"), deleteVideoCategory);
 router.put("/:id", authMiddleware, restrictTo("admin"), updateVideoCategory);

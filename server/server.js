@@ -20,6 +20,7 @@ import documentationRoutes from "./routes/documentationRoutes.js";
 import blogCatRoutes from "./routes/blogCatRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import docCatRoutes from "./routes/docCatRoutes.js";
+import videoCategoryRoutes from "./routes/videoCategoryRoutes.js";
 
 //** MIDDLEWARE IMPORT */
 import notFound from "./middlewares/errorHandler.js";
@@ -74,9 +75,10 @@ app.use("/api/v1/review", reviewRoutes);
 app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/video", videoRoutes);
 app.use("/api/v1/documentation", documentationRoutes);
-app.use("/api/v1/blog-category", blogCatRoutes);
+app.use("/api/v1/blog/category", blogCatRoutes);
 app.use("/api/v1/blog", blogRoutes);
-app.use("/api/v1/doc-category", docCatRoutes);
+app.use("/api/v1/doc/category", docCatRoutes);
+app.use("/api/v1/video/category", videoCategoryRoutes);
 
 // ** VALIDATION MIDDLEWARE *
 app.use(notFound);

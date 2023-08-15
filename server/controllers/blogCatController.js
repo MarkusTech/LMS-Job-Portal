@@ -5,10 +5,10 @@ import validateMongoDbId from "../utils/validateMongoDbId.js";
 
 //** Create Blog Category */
 const createBlogCategory = asyncHandler(async (req, res) => {
-  const { slug, title } = req.body;
+  // const { slug, title } = req.body;
   try {
-    if (title) {
-      slug = slugify(title);
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title.toLowerCase());
     }
     const createBlogCat = await blogCatModel.create(req.body);
     res.status(200).json({
@@ -67,12 +67,12 @@ const deleteBlogCategory = asyncHandler(async (req, res) => {
 //** Update Blog Category */
 const updateBlogCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { title, slug } = req.body;
+  // const { title, slug } = req.body;
 
   validateMongoDbId(id);
   try {
-    if (title) {
-      slug = slugify(title);
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title.toLowerCase());
     }
     const updateCat = await blogCatModel.findByIdAndUpdate(id, req.body, {
       new: true,

@@ -5,10 +5,10 @@ import slugify from "slugify";
 
 //** CREATE or POST BLOG */
 const createBlog = asyncHandler(async (req, res) => {
-  const { title, slug } = req.body;
+  // const { title, slug } = req.body;
   try {
-    if (title) {
-      slug = slugify(title);
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title.toLowerCase());
     }
     const blog = await blogModel.create(req.body);
     res.status(200).json({
@@ -67,10 +67,10 @@ const deleteBlog = asyncHandler(async (req, res) => {
 //** UPDATE BLOG */
 const updateBlog = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { title, slug } = req.body;
+  // const { title, slug } = req.body;
   try {
-    if (title) {
-      slug = slugify(title);
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title.toLowerCase());
     }
     const updBlog = await blogModel.findByIdAndUpdate(id, req.body, {
       new: true,

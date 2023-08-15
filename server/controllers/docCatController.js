@@ -5,10 +5,10 @@ import slugify from "slugify";
 
 //** POST DOCUMENT CATEGORY */
 const postDocCategory = asyncHandler(async (req, res) => {
-  const { title, slug } = req.body;
+  // const { title, slug } = req.body;
   try {
-    if (title) {
-      slug = slugify(title);
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title.toLowerCase());
     }
     const postDocCat = await docCatModel.create(req.body);
     res.status(200).json({
@@ -67,11 +67,11 @@ const deleteDocCategory = asyncHandler(async (req, res) => {
 //** UPDATE DOC */
 const updateDocCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { title, slug } = req.body;
+  // const { title, slug } = req.body;
   validateMongoDbId(id);
   try {
-    if (title) {
-      slug = slugify(title);
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title.toLowerCase());
     }
     const updatedDoc = await docCatModel.findByIdAndUpdate(id, req.body, {
       new: true,

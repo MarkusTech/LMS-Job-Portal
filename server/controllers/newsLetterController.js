@@ -2,6 +2,7 @@ import newsLetterModel from "../models/newsLetterModel.js";
 import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 
+//** SUBSCRIBE */
 const subscribe = asyncHandler(async (req, res) => {
   try {
     const newEmail = await newsLetterModel.create(req.body);
@@ -14,6 +15,7 @@ const subscribe = asyncHandler(async (req, res) => {
   }
 });
 
+//** UNSUBSCRIBE */
 const unsubscribe = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);

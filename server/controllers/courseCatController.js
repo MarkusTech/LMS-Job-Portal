@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 import slugify from "slugify";
 
+//** CREATE COURSE CATEGORY */
 const postCourseCategory = asyncHandler(async (req, res) => {
   try {
     if (req.body.title) {
@@ -18,6 +19,7 @@ const postCourseCategory = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET ALL COURSE CATEGORY */
 const getAllCourseCategory = asyncHandler(async (req, res) => {
   try {
     const result = await courseCatModel.find();
@@ -31,6 +33,7 @@ const getAllCourseCategory = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET COURSE CATEGORY */
 const getCourse = asyncHandler(async (req, res) => {
   const { slug } = req.params;
   try {
@@ -45,6 +48,7 @@ const getCourse = asyncHandler(async (req, res) => {
   }
 });
 
+//** DELETE COURSE CATEGORY */
 const deleteCourseCat = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
@@ -59,6 +63,7 @@ const deleteCourseCat = asyncHandler(async (req, res) => {
   }
 });
 
+//** UPDATE COURSE CATEGORY */
 const updateACourseCat = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);

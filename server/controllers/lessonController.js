@@ -4,6 +4,7 @@ import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 import slugify from "slugify";
 
+//** CREATE LESSON */
 const createLesson = asyncHandler(async (req, res) => {
   const { courseId } = req.params;
   try {
@@ -32,6 +33,7 @@ const createLesson = asyncHandler(async (req, res) => {
   }
 });
 
+//** DELETE LESSON */
 const deleteLesson = asyncHandler(async (req, res) => {
   const { courseId, lessonId } = req.params;
   validateMongoDbId(courseId);
@@ -51,7 +53,7 @@ const deleteLesson = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
-
+//** GET LESSON */
 const getLesson = asyncHandler(async (req, res) => {
   const { lessonId } = req.params;
   validateMongoDbId(lessonId);
@@ -67,6 +69,7 @@ const getLesson = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET ALL LESSON */
 const getAllLesson = asyncHandler(async (req, res) => {
   const { courseId } = req.params;
   validateMongoDbId(courseId);
@@ -81,6 +84,7 @@ const getAllLesson = asyncHandler(async (req, res) => {
   }
 });
 
+//** UPDATE LESSON */
 const updateLesson = asyncHandler(async (req, res) => {
   const { lessonId } = req.params;
   try {

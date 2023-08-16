@@ -3,6 +3,7 @@ import slugify from "slugify";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 import asyncHandler from "express-async-handler";
 
+//** CREATE VIDEO CATEGORY */
 const postVideoCategory = asyncHandler(async (req, res) => {
   try {
     if (req.body.title) {
@@ -19,6 +20,7 @@ const postVideoCategory = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET VIDEO CATEGORY */
 const getVideoCategory = asyncHandler(async (req, res) => {
   const { slug } = req.params;
   try {
@@ -33,6 +35,7 @@ const getVideoCategory = asyncHandler(async (req, res) => {
   }
 });
 
+//** GET ALL VIDEO CATEGORY */
 const getAllVideoCategory = asyncHandler(async (req, res) => {
   try {
     const result = await videoCatModel.find();
@@ -46,6 +49,7 @@ const getAllVideoCategory = asyncHandler(async (req, res) => {
   }
 });
 
+//** DELETE VIDEO CATEGORY */
 const deleteVideoCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
@@ -60,6 +64,7 @@ const deleteVideoCategory = asyncHandler(async (req, res) => {
   }
 });
 
+//** UPDATE VIDEO CATEGORY */
 const updateVideoCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);

@@ -81,6 +81,8 @@ app.use("/api/v1/blog/category", blogCatRoutes);
 app.use("/api/v1/blog", blogRoutes);
 app.use("/api/v1/doc/category", docCatRoutes);
 app.use("/api/v1/video/category", videoCategoryRoutes);
+app.use("/api/v1/course/category", courseCatRoutes);
+app.use("/api/v1/course", courseRoutes);
 
 // ** VALIDATION MIDDLEWARE *
 app.use(notFound);

@@ -1,9 +1,8 @@
-import courseModel from "../models/courseModel";
+import courseModel from "../models/courseModel.js";
 import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 import slugify from "slugify";
-import userModel from "../models/userModel";
-import { use } from "passport";
+import userModel from "../models/userModel.js";
 
 const createCourse = asyncHandler(async (req, res) => {
   const { _id } = req.user;

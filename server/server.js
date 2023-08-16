@@ -21,6 +21,8 @@ import blogCatRoutes from "./routes/blogCatRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import docCatRoutes from "./routes/docCatRoutes.js";
 import videoCategoryRoutes from "./routes/videoCategoryRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
+import courseCatRoutes from "./routes/courseCatRoutes.js";
 
 //** MIDDLEWARE IMPORT */
 import notFound from "./middlewares/errorHandler.js";

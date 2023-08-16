@@ -9,26 +9,34 @@ import {
   updateACourseCat,
 } from "../controllers/courseCatController.js";
 
+//** GET ALL METHOD */
 router.get("/all", getAllCourseCategory);
 
+//** POST METHOD */
 router.post(
   "/",
   authMiddleware,
   restrictTo("admin", "instructor"),
   postCourseCategory
 );
+
+//** GET METHOD */
 router.get(
   "/:slug",
   authMiddleware,
   restrictTo("admin", "instructor"),
   getCourse
 );
+
+//** DELETE METHOD */
 router.delete(
   "/:id",
   authMiddleware,
   restrictTo("admin", "instructor"),
   deleteCourseCat
 );
+
+//** PUT METHOD */
 router.put(
   "/:id",
   authMiddleware,

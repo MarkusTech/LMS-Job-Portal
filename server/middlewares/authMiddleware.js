@@ -31,4 +31,14 @@ const restrictTo = (...roles) => {
   });
 };
 
-export { authMiddleware, restrictTo };
+const isBoth = asyncHandler(async (req, res) => {
+  const { email } = req.user;
+  const isBoth = await userModel.findOne({ email });
+  if (isBoth.roles !== "admin" || isBoth.roles !== "instructor") {
+    throw new Error("You Should have either admin role or instructor role");
+  } else {
+    next();
+  }
+});
+
+export { authMiddleware, restrictTo, isBoth };

@@ -3,7 +3,7 @@ import slugify from "slugify";
 import asyncHandler from "express-async-handler";
 import validateMongoDbId from "../utils/validateMongoDbId.js";
 
-//** Create Blog Category */
+//** Create Blog Categories*/
 const createBlogCategory = asyncHandler(async (req, res) => {
   // const { slug, title } = req.body;
   try {

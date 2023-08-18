@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 
+//** AUTH MIDDLEWARE */
 const authMiddleware = asyncHandler(async (req, res, next) => {
   let token;
   if (req?.headers?.authorization?.startsWith("Bearer")) {
@@ -21,6 +22,7 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
   }
 });
 
+//** RESTRICTION TO USERS */
 const restrictTo = (...roles) => {
   return asyncHandler(async (req, res, next) => {
     if (!roles.includes(req.user.roles)) {

@@ -1,4 +1,5 @@
 import sesssionModel from "../models/sesssionModel";
+//** IMPORT FROM CONTROLLER */
 import { createOne, updateOne, deleteOne, getOne, getAll } from "./customController.js"
 
 const postSession = createOne(BookSession);
